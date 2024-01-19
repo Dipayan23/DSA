@@ -28,6 +28,8 @@ public:
     void delBeg();
     void delEnd();
     void display();
+    bool search(int value);
+    void bubbleSort();
 };
 
 void Linklist ::inBeg(int val)
@@ -60,7 +62,7 @@ void Linklist ::inEnd(int val)
             curr = curr->next;
         }
         curr->next = newNode;
-        cout<<"DONE";
+        cout << "DONE";
     }
 }
 
@@ -121,6 +123,48 @@ void Linklist ::display()
             curr = curr->next;
         }
     }
+}
+
+bool Linklist ::search(int value)
+{
+    Node *current = head;
+    while (current != NULL)
+    {
+        if (current->data == value)
+        {
+            return true;
+        }
+        current = current->next;
+    }
+    return false;
+}
+
+void Linklist ::bubbleSort()
+{
+    if (head == NULL)
+    {
+        return;
+    }
+    int swapped;
+    Node *current;
+    Node *last = NULL;
+    do
+    {
+        swapped = 0;
+        current = head;
+        while (current->next != last)
+        {
+            if (current->data > current->next->data)
+            {
+                int temp = current->data;
+                current->data = current->next->data;
+                current->next->data = temp;
+                swapped = 1;
+            }
+            current = current->next;
+        }
+        last = current;
+    } while (swapped);
 }
 
 int main()
