@@ -30,6 +30,9 @@ public:
     void display();
     bool search(int value);
     void bubbleSort();
+    void count();
+    void sum();
+    void max();
 };
 
 void Linklist ::inBeg(int val)
@@ -165,6 +168,49 @@ void Linklist ::bubbleSort()
         }
         last = current;
     } while (swapped);
+}
+void Linklist ::inBeg(int value)
+{
+    Node *temp = new Node(value);
+    temp->next = head;
+    head = temp;
+    cout << "The value is inserted" << endl;
+}
+
+void Linklist :: count(){
+    int count=0;
+    Node* temp = head;
+    while (temp!=NULL)
+    {
+        count++;
+        temp=temp->next;
+    }
+    cout<<"The total no of nodes are :"<<count<<endl;
+}
+
+void Linklist :: sum(){
+    int sum=0;
+    Node* temp = head;
+    while (temp!=NULL)
+    {
+        sum+=temp->data;
+        temp=temp->next;
+    }
+    cout<<"The sum is :"<<sum<<endl;
+}
+
+void Linklist :: max(){
+    int max=INT32_MIN;
+    Node* temp = head;
+    while (temp!=NULL)
+    {
+        if (max<temp->data)
+        {
+            max=temp->data;
+        }
+        temp=temp->next;
+    }
+    cout<<"The largest element is :"<<max<<endl;
 }
 
 int main()
