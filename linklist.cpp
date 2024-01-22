@@ -33,6 +33,7 @@ public:
     void count();
     void sum();
     void max();
+    Node* getHead();
 };
 
 void Linklist ::inBeg(int val)
@@ -69,6 +70,10 @@ void Linklist ::inEnd(int val)
     }
 }
 
+Node* Linklist :: getHead(){
+    return head;
+}
+
 void Linklist ::delBeg()
 {
     if (!head)
@@ -86,6 +91,16 @@ void Linklist ::delBeg()
         head = head->next;
         delete temp;
     }
+}
+
+void concat(Linklist p,Linklist q){
+    Node* curr = p.getHead();
+    while (curr->next)
+    {
+        curr=curr->next;
+    }
+    curr->next=q.getHead();
+    
 }
 
 void Linklist::delEnd()
