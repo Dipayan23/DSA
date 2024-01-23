@@ -93,6 +93,53 @@ void Linklist ::delBeg()
     }
 }
 
+void merge(Linklist p,Linklist q){
+    Node* head1=p.getHead();
+    Node* head2 = q.getHead();
+    Node* last = NULL;
+    Node* temp= NULL;
+    if (head1->data<head2->data)
+    {
+        temp=last=head1;
+        head1=head1->next;
+        last->next=NULL;
+    }
+    else
+    {
+        temp=last=head2;
+        head2=head2->next;
+        last->next=NULL;
+    }
+    while (head1&&head2)
+    {
+        if (head1->data<head2->data)
+        {
+            last->next=head1;
+            last=head1;
+            head1=head1->next;
+            last->next=NULL;
+        }
+        else
+        {
+            last->next=head2;
+            last=head2;
+            head2=head2->next;
+            last->next=NULL;
+        }
+        if (head1)
+        {
+            last->next=head1;
+        }
+        else
+        {
+            last->next=head2;
+        }
+        
+        
+    }
+    
+}
+
 void concat(Linklist p,Linklist q){
     Node* curr = p.getHead();
     while (curr->next)
