@@ -54,18 +54,16 @@ string intopostfix(string s)
         }
         else
         {
-            while (!st.empty() && precedence(s[i]) < precedence(st.top()) )
+            while (!st.empty() && precedence(s[i]) < precedence(st.top()))
             {
                 result += st.top();
                 st.pop();
             }
             st.push(c);
         }
-
-
-        
     }
-    while (!st.empty()) {
+    while (!st.empty())
+    {
         result += st.top();
         st.pop();
     }
@@ -75,7 +73,7 @@ string intopostfix(string s)
 
 int main()
 {
-    string infix="4+7+3/2*7*(3+6)";
-    cout<<intopostfix(infix);
+    string infix = "4+7+3/2*7*(3+6)";
+    cout << intopostfix(infix);
     return 0;
 }
