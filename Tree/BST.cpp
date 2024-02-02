@@ -186,57 +186,61 @@ int BST ::height(Node *root)
 void BST::remove(int key)
 {
     if (root == NULL)
+    {
+        cout << "The BST is empty" << endl;
         return;
+    }
     Node *x = root;
-    Node *parent = NULL;
+    Node *par = NULL;
     while (x != NULL && x->data != key)
     {
-        parent = x;
-        if (key < x->data)
+        par = x;
+        if (x->data > key)
+        {
             x = x->lchild;
+        }
         else
+        {
             x = x->rchild;
+        }
     }
     if (x == NULL)
     {
-        printf("data is not present\n");
+        cout << "The element is not found" << endl;
         return;
     }
-    if (x->lchild == NULL || x->rchild == NULL)
+    if (!x->lchild || !x->rchild)
     {
-        struct Node *ptr;
-        if (x->lchild == NULL)
+        Node *ptr;
+        if (!x->lchild)
             ptr = x->rchild;
         else
-            ptr = x->lchild;
-        if (parent == NULL)
+            ptr = x->rchild;
+        if (!par)
         {
             delete root;
             root = ptr;
             return;
         }
-        if (x == parent->lchild)
-            parent->lchild = ptr;
+        if (x == par->lchild)
+            par->lchild = ptr;
         else
-            parent->rchild = ptr;
-        delete x;
+            par->rchild = ptr;
         return;
     }
+
     else
     {
-        struct Node *succ = x->rchild;
-        struct Node *pSucc = NULL;
+        Node *succ = x->rchild;
+        Node *par2 = NULL;
         while (succ->lchild != NULL)
         {
-            pSucc = succ;
+            par2 = succ;
             succ = succ->lchild;
         }
         x->data = succ->data;
-        if (pSucc == NULL)
-            x->rchild = succ->rchild;
-        else
-            pSucc->lchild = succ->rchild;
-        free(succ);
+        par2->lchild = succ->lchild;
+        delete succ;
         return;
     }
 }
@@ -254,12 +258,7 @@ int main()
     S.insert(2);
     S.inOrderTraverse(S.getRoot());
     cout << endl;
-    cout << S.search(8, S.getRoot()) << endl;
-    cout << S.findBig() << endl;
-    cout << S.findSmall() << endl;
-    cout << S.totalNode(S.getRoot()) << endl;
-    cout << S.height(S.getRoot()) << endl;
-    S.remove(7);
+    S.remove(1);
     S.inOrderTraverse(S.getRoot());
     return 0;
 }
