@@ -107,7 +107,7 @@ Poly Poly ::operator+(Poly &p)
         }
         else
         {
-            result.insert((h1->coe + h2->coe), (h1->pow + h2->pow));
+            result.insert((h1->coe + h2->coe), (h1->pow));
             h1 = h1->next;
             h2 = h2->next;
         }
@@ -140,7 +140,7 @@ int main()
     p2.display();
     cout << endl;
 
-    p3 = p1 + p2;
+    p3 = p1 + p2;//p3=p1(p2)==p3=p1+p2
     p3.display();
 
     return 0;
