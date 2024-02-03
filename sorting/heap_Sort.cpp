@@ -45,7 +45,7 @@ void heap_sort(int arr[], int n)
 int main()
 {
 
-    int arr[8] = {5, 2, 9, 1, 3, 7, 8, 4};
+    int arr[8] = {5, 2, 9, 1, 3, 5, 8, 4};
     heap_sort(arr, 8);
     for (int i = 0; i < 8; i++)
     {
