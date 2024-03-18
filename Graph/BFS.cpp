@@ -1,9 +1,8 @@
 #include <iostream>
 #include <queue>
-#include<deque>
 using namespace std;
 
-void BFS(int** arr,int n)
+void BFS(int n,int arr[][10])
 {
     int visited[n + 1] = {0};
     queue<int> q;
@@ -13,6 +12,8 @@ void BFS(int** arr,int n)
     visited[i] = 1;
     while (!q.empty())
     {
+        i=q.front(); 
+        q.pop();
         for (int j = 1; j <= n; j++)
         {
             if (arr[i][j] == 1 && visited[j] == 0)
@@ -22,18 +23,28 @@ void BFS(int** arr,int n)
                 visited[j] = 1;
             }
         }
-        q.pop();
-        i=q.front(); 
+        
     }
 }
 
 int main()
 {
-    int arr[5][5] = { {0, 0, 0, 0, 0},
-                      {0, 0, 1, 0, 1},
-                      {0, 1, 0, 1, 0},
-                      {0, 0, 1, 0, 0},
-                      {0, 1, 0, 0, 0} };
-    BFS((int**)arr,5);
+    int arr[10][10]={0};
+    cout<<"Enter the number of vertice :";
+    int n;
+    cin>>n;
+    cout<<"Enter the adjecent :"<<endl;
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            int p;
+            cin>>p;
+            arr[i][j]=p;  
+        }
+        
+    }
+    
+    BFS(5,arr);
     return 0;
 }
