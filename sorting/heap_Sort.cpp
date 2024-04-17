@@ -1,80 +1,52 @@
-// C++ program for implementation of Heap Sort
 
 #include <iostream>
 using namespace std;
 
-// To heapify a subtree rooted with node i
-// which is an index in arr[].
-// n is size of heap
-void heapify(int arr[], int N, int i)
+void heapAdjust(int a[], int i, int n)
 {
-
-	// Initialize largest as root
-	int largest = i;
-
-	// left = 2*i + 1
-	int l = 2 * i + 1;
-
-	// right = 2*i + 2
-	int r = 2 * i + 2;
-
-	// If left child is larger than root
-	if (l < N && arr[l] > arr[largest])
-		largest = l;
-
-	// If right child is larger than largest
-	// so far
-	if (r < N && arr[r] > arr[largest])
-		largest = r;
-
-	// If largest is not root
-	if (largest != i) {
-		swap(arr[i], arr[largest]);
-
-		// Recursively heapify the affected
-		// sub-tree
-		heapify(arr, N, largest);
+	int j = 2 * i;
+	int key = a[i];
+	while (j <= n)
+	{
+		if (j < n && a[j] < a[j + 1])
+		{
+			j++;
+		}
+		else
+		{
+			break;
+		}
+		a[j / 2] = a[j];
+		j = 2 * j;
 	}
+	a[j / 2] = key;
 }
 
-// Main function to do heap sort
-void heapSort(int arr[], int N)
-{
-
-	// Build heap (rearrange array)
-	for (int i = N / 2 - 1; i >= 0; i--)
-		heapify(arr, N, i);
-
-	// One by one extract an element
-	// from heap
-	for (int i = N - 1; i > 0; i--) {
-
-		// Move current root to end
-		swap(arr[0], arr[i]);
-
-		// call max heapify on the reduced heap
-		heapify(arr, i, 0);
+void makeHeap(int a[],int n){
+	for (int i = n/2;i>=1; i--)
+	{
+		heapAdjust(a,i,n);
 	}
+	
 }
 
-// A utility function to print array of size n
-void printArray(int arr[], int N)
-{
-	for (int i = 0; i < N; ++i)
-		cout << arr[i] << " ";
-	cout << "\n";
+void heapSort(int a[],int n){
+	makeHeap(a,n);
+	for (int i = n; i>=1; i--)
+	{
+		int t=a[i];
+		a[i]=a[1];
+		a[1]=t;
+		heapAdjust(a,1,i-1);
+	}
+	
 }
 
-// Driver's code
 int main()
 {
-	int arr[] = { 12, 11, 13, 5, 6, 7 };
-	int N = sizeof(arr) / sizeof(arr[0]);
-
-	// Function call
-	heapSort(arr, N);
-
-	cout << "Sorted array is \n";
-	printArray(arr, N);
+	int a[6]={0,1,7,2,3,5};
+	heapSort(a,5);
+	for(int i=1;i<6;i++){
+		cout<<a[i]<<" 	";
+	}
 }
-

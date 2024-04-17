@@ -8,12 +8,12 @@ void Swap(int &a, int &b)
     b = temp;
 }
 
-void input_Array(int a[],int n){
+void input_Array(int a[], int n)
+{
     for (int i = 0; i < n; i++)
     {
-        cin>>a[i];
+        cin >> a[i];
     }
-    
 }
 
 void bubble_Sort(int arr[], int n)
@@ -41,12 +41,12 @@ int display(int arr[], int n)
 int main()
 {
     int n;
-    cin>>n;
+    cin >> n;
     int a[n];
-    input_Array(a,n);
-    display(a,n);
-    bubble_Sort(a,n);
-    cout<<endl;
-    display(a,n);
+    input_Array(a, n);
+    display(a, n);
+    bubble_Sort(a, n);
+    cout << endl;
+    display(a, n);
     return 0;
 }
