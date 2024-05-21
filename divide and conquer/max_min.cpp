@@ -35,7 +35,7 @@ int max_min(int arr[],int i,int j,int *max,int *min){
             *min=min1;
         }
     }
-    cout<<*max<<"    "<<*min<<endl;
+    //cout<<*max<<"    "<<*min<<endl;
     return (*max,*min);
 }
 
