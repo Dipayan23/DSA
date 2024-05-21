@@ -25,7 +25,7 @@ void bellman_ford(int graph[][3],int src,int v,int e){
         int x=graph[i][0];
         int y=graph[i][1];
         int weight=graph[i][2];
-        if (x!=999&&dist[x]+weight<dist[y])
+        if (dist[x]!=999&&dist[x]+weight<dist[y])
         {
             cout<<"The graph contain negative edge cycle"<<endl;
             return;
